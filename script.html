@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            function computerPlay(){
+                var options = ["Rock", "Paper", "Scissors"];
+                return options[Math.floor(Math.random() * 3)];
+            }
+            function playRound(playerSelection, computerSelection){
+                if (playerSelection == computerSelection){
+                    return ("It's a Draw!, you both chose " + playerSelection.toUpperCase() + ".");
+                }
+                else{
+                    switch(playerSelection){
+                        case "rock":{
+                            switch(computerSelection){
+                                case "paper":
+                                return "You Win!, " + playerSelection.toUpperCase() + " beats " + computerSelection.toUpperCase() + ".";
+                                break;
+                                case "scissors":
+                                return "You Lose!, " + computerSelection.toUpperCase() + " beat " + playerSelection.toUpperCase() + ".";
+                                break;
+                            }
+                            break;
+                        }
+                        case "paper":{
+                            switch(computerSelection){
+                                case "rock":
+                                return "You Lose!, " + computerSelection.toUpperCase() + " beats " + playerSelection.toUpperCase() + ".";
+                                break;
+                                case "scissors":
+                                return "You Win!, " + playerSelection.toUpperCase() + " beats " + computerSelection.toUpperCase() + ".";
+                                break;
+                            }
+                            break;
+                        }
+                        case "scissors":{
+                            switch(computerSelection){
+                                case "rock":
+                                return "You Win!, " + playerSelection.toUpperCase() + " beat " + computerSelection.toUpperCase() + ".";
+                                break;
+                                case "paper":
+                                return "You Lose!, " + computerSelection.toUpperCase() + " beats " + playerSelection.toUpperCase() + ".";
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            for (var i = 0; i < 5; i++){
+                var input = prompt("Rock, Paper or Scissors");
+                result = playRound(input.toLowerCase(), computerPlay().toLowerCase());
+                console.log(result);
+            }
+            
+        </script>
+    </body>
+</html>
