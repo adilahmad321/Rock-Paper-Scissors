@@ -1,61 +1,49 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <script>
-            function computerPlay(){
-                var options = ["Rock", "Paper", "Scissors"];
-                return options[Math.floor(Math.random() * 3)];
-            }
-            function playRound(playerSelection, computerSelection){
-                if (playerSelection == computerSelection){
-                    return ("It's a Draw!, you both chose " + playerSelection.toUpperCase() + ".");
-                }
-                else{
-                    switch(playerSelection){
-                        case "rock":{
-                            switch(computerSelection){
-                                case "paper":
-                                return "You Win!, " + playerSelection.toUpperCase() + " beats " + computerSelection.toUpperCase() + ".";
-                                break;
-                                case "scissors":
-                                return "You Lose!, " + computerSelection.toUpperCase() + " beat " + playerSelection.toUpperCase() + ".";
-                                break;
-                            }
-                            break;
-                        }
-                        case "paper":{
-                            switch(computerSelection){
-                                case "rock":
-                                return "You Lose!, " + computerSelection.toUpperCase() + " beats " + playerSelection.toUpperCase() + ".";
-                                break;
-                                case "scissors":
-                                return "You Win!, " + playerSelection.toUpperCase() + " beats " + computerSelection.toUpperCase() + ".";
-                                break;
-                            }
-                            break;
-                        }
-                        case "scissors":{
-                            switch(computerSelection){
-                                case "rock":
-                                return "You Win!, " + playerSelection.toUpperCase() + " beat " + computerSelection.toUpperCase() + ".";
-                                break;
-                                case "paper":
-                                return "You Lose!, " + computerSelection.toUpperCase() + " beats " + playerSelection.toUpperCase() + ".";
-                                break;
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-            for (var i = 0; i < 5; i++){
-                var input = prompt("Rock, Paper or Scissors");
-                result = playRound(input.toLowerCase(), computerPlay().toLowerCase());
-                console.log(result);
-            }
-            
-        </script>
+        <div class="row h-100">
+            <div id="playerScreen" class="col-3">
+                <p class="mt-5 text-center header">PLAYER</p>
+                <button id="rock" class="btn btn-dark btn-lg ml-4 mb-5 buttonP">ROCK</button><br>
+                <button id="paper" class="btn btn-dark btn-lg ml-4 mb-5 buttonP">PAPER</button><br>
+                <button id="scissors" class="btn btn-dark btn-lg ml-4 mb-5 buttonP">SCISSORS</button>
+            </div>
+            <div id="gameScreen" class="col-6">
+                <p class="mt-0 text-center header">ROCK PAPER SCISSORS</p>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="header header1 text-center player">You Chose:</p>
+                        <p id="player" class="header header1 text-center player">&nbsp;</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="header header1 text-center computer">Computer Chose:</p>
+                        <p id="computer" class="header header1 text-center">&nbsp;</p>
+                    </div>    
+                </div>
+                <p id="result" class="header header3 mb-0">RESULT:</p>
+                <p class="header header2 text-center mt-5">SCORE</p>
+                <div class="d-inline-flex justify-content-center">
+                    <p id="scoreP" class="header score">0</p>
+                    <p class="header score">&nbsp;-&nbsp;</p>
+                    <p id="scoreC" class="header score">0</p>
+                </div>
+            </div>
+            <div id="computerScreen" class="col-3">
+                <p class="mt-5 text-center header mr-2">COMPUTER</p>
+                <button class="btn btn-dark btn-lg ml-5 mb-5 disabled">ROCK</button><br>
+                <button class="btn btn-dark btn-lg ml-5 mb-5 disabled">PAPER</button><br>
+                <button class="btn btn-dark btn-lg ml-5 mb-5 disabled">SCISSORS</button>
+            </div>
+        </div>
+        <script src="javascript.js"></script>
     </body>
 </html>

@@ -1,0 +1,44 @@
+@font-face{
+    font-family: Score;
+    src: url("SCOREBOARD.ttf");
+}
+body{
+    height: 100vh;
+    overflow: hidden;
+}
+#playerScreen{
+    background-image: linear-gradient(#e2f1f8, #b0bec5, #808e95);
+}
+#computerScreen{
+    background-image: linear-gradient(#fffffb, #d7ccc8, #a69b97);
+}
+#gameScreen{
+    background-image: linear-gradient(#b2fef7, #80cbc4, #4f9a94);
+}
+.header{
+    font-family: fantasy;
+    color: rgb(6, 56, 56);
+    font-weight: bolder;
+    font-size: 50px;
+}
+.header1{
+    color: darkslategray;
+    font-size: 40px;
+}
+.header2{
+    margin-top: 40px;
+}
+.header3{
+    font-size: 30px;
+}
+.btn{
+    width: 250px;
+}
+.score{
+    font-family: Score;
+    font-size: 150px;
+}
+.d-inline-flex{
+    position: relative;
+    left: 180px;
+}
