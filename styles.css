@@ -42,3 +42,8 @@ body{
     position: relative;
     left: 180px;
 }
+.spin{
+    position: relative;
+    left: 120px;
+    top: 15px;
+}

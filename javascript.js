@@ -8,59 +8,49 @@ var playerButtons = document.getElementsByClassName("buttonP");
 
 var scoreP = 0;
 var scoreC = 0;
-
-function win(P, C){
-    var p = P;
-    var c = C;
-    [].forEach.call(playerButtons,(element) =>  {
-        element.removeEventListener("click", eventList());
-    });
-    [].forEach.call(playerButtons,(element) =>  {
-        element.classList.add("disabled");
-    });
-    var children = screen.querySelectorAll("*");
-    [].forEach.call(children,(element) =>  {
-        element.remove();
-    });
-    screen.classList.add("header", "header3", "text-center");
-    $('#gameScreen').css({'background-image': 'linear-gradient(#9cff57, #64dd17, #1faa00)'});
-    screen.innerHTML="You Win! <br>Final Score: Player " + p + " - Computer " + c;
-}
-
-function lose(P, C){
-    var p = P;
-    var c = C;
-    [].forEach.call(playerButtons,(element) =>  {
-        element.removeEventListener("click", eventList());
-    });
-    [].forEach.call(playerButtons,(element) =>  {
-        element.classList.add("disabled");
-    });
-    var children = screen.querySelectorAll("*");
-    [].forEach.call(children,(element) =>  {
-        element.remove();
-    });
-    screen.classList.add("header", "header3", "text-center");
-    $('#gameScreen').css({'background-image': 'linear-gradient(#ff5131, #d50000, #9b0000)'});
-    screen.innerHTML="You Lose! <br>Final Score: Player " + p + " - Computer " + c;
-}
+var flag = 0;
+var option = "";
 
 [].forEach.call(playerButtons,(element) =>  {
     element.addEventListener("click", eventList = () => {
-        var choice = element.innerHTML;
-        outputChoice.innerHTML = choice;
-        result.innerHTML = "RESULT: ";
-        result.innerHTML += playRound(choice.toLowerCase(), computerPlay().toLowerCase());
-        playerScore.innerHTML = scoreP;
-        computerScore.innerHTML = scoreC;
-        if (scoreP == 5){
-            win(scoreP, scoreC);
-        }
-        if (scoreC == 5){
-            lose(scoreP, scoreC);
+        if (flag == 0){
+            flag = 1;
+            result.innerHTML = "RESULT: ";
+            computerChoice.innerHTML = "";
+            var choice = element.innerHTML;
+            option = choice;
+            outputChoice.innerHTML = choice;
+            computerChoice.classList.add("spinner-border", "spin");
+            setTimeout(step1, 500);
         }
     });
 });
+
+function step1(){
+    computerChoice.classList.remove("spinner-border", "spin");
+    result.innerHTML = "RESULT: ";
+    result.innerHTML += playRound(option.toLowerCase(), computerPlay().toLowerCase());
+    playerScore.innerHTML = scoreP;
+    computerScore.innerHTML = scoreC;
+    if ((scoreC == 5) || (scoreP == 5)){
+        [].forEach.call(playerButtons,(element) =>  {
+            element.classList.add("disabled");
+        });
+        setTimeout(step2, 1000);
+    }
+    else{
+        flag = 0;
+    }
+}
+
+function step2(){
+    if (scoreP == 5){
+        win(scoreP, scoreC);
+    }
+    if (scoreC == 5){
+        lose(scoreP, scoreC);
+    }
+}
 
 function computerPlay(){
     var options = ["ROCK", "PAPER", "SCISSORS"];
@@ -115,4 +105,34 @@ function playRound(playerSelection, computerSelection){
             }
         }
     }
+}
+
+function win(P, C){
+    var p = P;
+    var c = C;
+    screen.classList.add("header", "header3", "text-center");
+    $('#gameScreen').css({'background-image': 'linear-gradient(#9cff57, #64dd17, #1faa00)'});
+    screen.innerHTML="You Win! " + " Final Score: Player " + p + " - Computer " + c;
+    [].forEach.call(playerButtons,(element) =>  {
+        element.removeEventListener("click", eventList());
+    });
+    var children = screen.querySelectorAll("*");
+    [].forEach.call(children,(element) =>  {
+        element.remove();
+    });
+}
+
+function lose(P, C){
+    var p = P;
+    var c = C;
+    screen.classList.add("header", "header3", "text-center");
+    $('#gameScreen').css({'background-image': 'linear-gradient(#ff5131, #d50000, #9b0000)'});
+    screen.innerHTML="You Lose! " + " Final Score: Player " + p + " - Computer " + c;
+    [].forEach.call(playerButtons,(element) =>  {
+        element.removeEventListener("click", eventList());
+    });
+    var children = screen.querySelectorAll("*");
+    [].forEach.call(children,(element) =>  {
+        element.remove();
+    });
 }
