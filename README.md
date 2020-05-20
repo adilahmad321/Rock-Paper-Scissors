@@ -1,1 +1,1 @@
-Rock-Papers-Scissors game
+Rock-Paper-Scissors game
